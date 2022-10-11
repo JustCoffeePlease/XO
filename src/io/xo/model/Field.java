@@ -31,3 +31,5 @@ public class Field {
         return coordinate >= MIN_COORDINATE && coordinate < MAX_COORDINATE;
     }
 }
+
+// ВИДЕО 48:20
