@@ -1,4 +1,4 @@
 package io.xo.model.exceptions;
 
-public class InvalidPointException extends AbstractXOEcteption{
+public class InvalidPointException extends AbstractXOException {
 }

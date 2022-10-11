@@ -1,4 +1,4 @@
 package io.xo.model.exceptions;
 
-public class AbstractXOException {
+public abstract class AbstractXOException extends Exception {
 }
