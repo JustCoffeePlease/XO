@@ -34,4 +34,65 @@ public class FieldTest {
         assertEquals(inputFigure, actualFigure);
 
     }
+
+    @Test
+    public void getFigureWhenFigureIsNotSet() throws Exception {
+        final Field field = new Field();
+        final Point inputPoint = new Point(0, 0);
+
+
+        final Figure actualFigure = field.getFigure(inputPoint);
+
+        assertNull(actualFigure);
+
+    }
+
+    @Test
+    public void getFigureWhenXIsLessThenZero () throws Exception {
+        final Field field = new Field();
+        final Point inputPoint = new Point(-1, 0);
+
+        try {
+            final Figure actualFigure = field.getFigure(inputPoint);
+            fail();
+        }
+        catch (final InvalidPointException e) {}
+    }
+
+    @Test
+    public void getFigureWhenYIsLessThenZero () throws Exception {
+        final Field field = new Field();
+        final Point inputPoint = new Point(0, -1);
+
+        try {
+            final Figure actualFigure = field.getFigure(inputPoint);
+            fail();
+        }
+        catch (final InvalidPointException e) {}
+    }
+
+
+    @Test
+    public void getFigureWhenXIMoreThenSize() throws Exception {
+        final Field field = new Field();
+        final Point inputPoint = new Point(field.getSize() + 1, 0);
+
+        try {
+            final Figure actualFigure = field.getFigure(inputPoint);
+            fail();
+        }
+        catch (final InvalidPointException e) {}
+    }
+
+    @Test
+    public void getFigureWhenYIMoreThenSize () throws Exception {
+        final Field field = new Field();
+        final Point inputPoint = new Point(0, field.getSize() + 1);
+
+        try {
+            final Figure actualFigure = field.getFigure(inputPoint);
+            fail();
+        }
+        catch (final InvalidPointException e) {}
+    }
 }
