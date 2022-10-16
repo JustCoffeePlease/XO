@@ -12,16 +12,19 @@ public class WinnerController {
 
         try {
             for (int i = 0; i < 3; i++) {
-                if (check(field, new Point(i, 0), new Point(i, 1), new Point(i, 2)))
+                if (check(field, new Point(i, 0), p -> new Point(p.x, p.y + 1)))
                     return field.getFigure(new Point(i, 0));
             }
+
             for (int i = 0; i < 3; i++) {
-                if (check(field, new Point(0, i), new Point(1, 0), new Point(2, i)))
+                if (check(field, new Point(i, 0), p -> new Point(p.x + 1, p.y)))
                     return field.getFigure(new Point(0, i));
             }
-            if (check(field, new Point(0, 0), new Point(1, 1), new Point(2, 2)))
+
+            if (check(field, new Point(0, 0), p -> new Point(p.x + 1, p.y + 1 )))
                 return field.getFigure(new Point(0, 0));
-            if (check(field, new Point(0, 2), new Point(1, 1), new Point(2, 0)))
+
+            if (check(field, new Point(0, 2), p -> new Point(p.x + 1, p.y - 1 )))
                 return field.getFigure(new Point(1, 1));
 
         } catch (InvalidPointException e) {
@@ -30,17 +33,24 @@ public class WinnerController {
         return null;
     }
 
-    private boolean check(final Field field, final Point p1, final Point p2, final Point p3) {
-
+    private boolean check(final Field field,
+                          final Point currentPoint,
+                          final IPointChanger iPointChanger) {
+        final Figure currentFigure;
+        final Figure nextFigure;
+        final Point nextPoint = iPointChanger.next(currentPoint);
         try {
-            if (field.getFigure(p1) == null) return false;
-            if (field.getFigure(p1) == field.getFigure(p2) &&
-                    field.getFigure(p1) == field.getFigure(p3))
-                return true;
+            currentFigure = field.getFigure(currentPoint);
+            nextFigure = field.getFigure(currentPoint);
         } catch (InvalidPointException e) {
-            e.printStackTrace();
+            return true;
         }
-        return false;
+
+        if (currentFigure == null) {return false;}
+
+        if (currentFigure != nextFigure) {return false;}
+
+        return check(field, nextPoint, iPointChanger);
     }
 
     private interface IPointChanger {
