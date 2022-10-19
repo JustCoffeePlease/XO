@@ -10,8 +10,8 @@ public class XOCLI {
 
     public static void main(String[] args) {
 
-            final String name1 = "Gleb";
-            final String name2 = "Slava";
+            final String name1 = "Alex";
+            final String name2 = "Olesya";
 
             final Player[] players = new Player[2];
             players[0] = new Player(name1, Figure.X);
