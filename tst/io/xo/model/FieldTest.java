@@ -12,102 +12,76 @@ import static org.junit.Assert.*;
 public class FieldTest {
 
     @Test
-    public void getSize() {
+    public void testGetSize() throws Exception {
         final Field field = new Field(3);
 
         assertEquals(3, field.getSize());
     }
 
     @Test
-    public void getFigure() {
-    }
-
-    @Test
-    public void setFigure() throws AlreadyOccupiedException, InvalidPointException {
+    public void testSetFigure() throws Exception {
         final Field field = new Field(3);
         final Point inputPoint = new Point(0, 0);
         final Figure inputFigure = Figure.O;
 
         field.setFigure(inputPoint, inputFigure);
-
         final Figure actualFigure = field.getFigure(inputPoint);
 
         assertEquals(inputFigure, actualFigure);
     }
 
     @Test
-    public void setFigureWhenAlreadyOccupied() throws Exception {
+    public void testGetFigureWhenFigureIsNotSet() throws Exception {
         final Field field = new Field(3);
         final Point inputPoint = new Point(0, 0);
-        final Figure inputFigure = Figure.O;
-
-        field.setFigure(inputPoint, inputFigure);
-
-        try {
-            field.setFigure(inputPoint, inputFigure);
-            fail();
-        }
-        catch (final AlreadyOccupiedException e) {}
-    }
-
-    @Test
-    public void getFigureWhenFigureIsNotSet() throws Exception {
-        final Field field = new Field(3);
-        final Point inputPoint = new Point(0, 0);
-
 
         final Figure actualFigure = field.getFigure(inputPoint);
 
         assertNull(actualFigure);
-
     }
 
     @Test
-    public void getFigureWhenXIsLessThenZero () throws Exception {
+    public void testGetFigureWhenXIsLessThenZero() throws Exception {
         final Field field = new Field(3);
         final Point inputPoint = new Point(-1, 0);
 
         try {
-            final Figure actualFigure = field.getFigure(inputPoint);
+            field.getFigure(inputPoint);
             fail();
-        }
-        catch (final InvalidPointException e) {}
+        } catch (final InvalidPointException e) {}
     }
 
     @Test
-    public void getFigureWhenYIsLessThenZero () throws Exception {
+    public void testGetFigureWhenYIsLessThenZero() throws Exception {
         final Field field = new Field(3);
         final Point inputPoint = new Point(0, -1);
 
         try {
-            final Figure actualFigure = field.getFigure(inputPoint);
+            field.getFigure(inputPoint);
             fail();
-        }
-        catch (final InvalidPointException e) {}
+        } catch (final InvalidPointException e) {}
     }
 
-
     @Test
-    public void getFigureWhenXIMoreThenSize() throws Exception {
+    public void testGetFigureWhenXIsMoreThenSize() throws Exception {
         final Field field = new Field(3);
         final Point inputPoint = new Point(field.getSize() + 1, 0);
 
         try {
-            final Figure actualFigure = field.getFigure(inputPoint);
+            field.getFigure(inputPoint);
             fail();
-        }
-        catch (final InvalidPointException e) {}
+        } catch (final InvalidPointException e) {}
     }
 
     @Test
-    public void getFigureWhenYIMoreThenSize () throws Exception {
+    public void testGetFigureWhenYIsMoreThenSize() throws Exception {
         final Field field = new Field(3);
         final Point inputPoint = new Point(0, field.getSize() + 1);
 
         try {
-            final Figure actualFigure = field.getFigure(inputPoint);
+            field.getFigure(inputPoint);
             fail();
-        }
-        catch (final InvalidPointException e) {}
+        } catch (final InvalidPointException e) {}
     }
 }
+

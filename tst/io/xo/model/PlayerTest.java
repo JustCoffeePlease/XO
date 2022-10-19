@@ -7,9 +7,8 @@ import static org.junit.Assert.*;
 public class PlayerTest {
 
     @Test
-    public void getName() throws Exception{
-
-        final String inputValue = "Alex";
+    public void testGetName() throws Exception {
+        final String inputValue = "Slava";
         final String expectedValue = inputValue;
 
         final Player player = new Player(inputValue, null);
@@ -20,8 +19,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void getFigure() throws Exception{
-
+    public void testGetFigure() throws Exception {
         final Figure inputValue = Figure.X;
         final Figure expectedValue = inputValue;
 

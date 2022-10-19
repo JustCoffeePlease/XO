@@ -7,37 +7,31 @@ import java.awt.*;
 
 public class Field {
 
-
     private static final int MIN_COORDINATE = 0;
 
     private final Figure[][] field;
 
-    private final int fieldSize;
+    private final int filedSize;
 
-    public Field(final int fieldSize) {
-        this.fieldSize = fieldSize;
-        field = new Figure[fieldSize][fieldSize];
+    public Field(final int filedSize) {
+        this.filedSize = filedSize;
+        field = new Figure[filedSize][filedSize];
     }
 
     public int getSize() {
-        return fieldSize;
+        return filedSize;
     }
 
     public Figure getFigure(final Point point) throws InvalidPointException {
-
         if (!checkPoint(point)) {
             throw new InvalidPointException();
         }
         return field[point.x][point.y];
     }
 
-    public void setFigure(final Point point, final Figure figure) throws InvalidPointException, AlreadyOccupiedException {
-
+    public void setFigure(final Point point, final Figure figure) throws InvalidPointException {
         if (!checkPoint(point)) {
             throw new InvalidPointException();
-        }
-        if (field[point.x][point.y] != null) {
-            throw new AlreadyOccupiedException();
         }
         field[point.x][point.y] = figure;
     }
@@ -50,3 +44,4 @@ public class Field {
         return coordinate >= MIN_COORDINATE && coordinate < maxCoordinate;
     }
 }
+

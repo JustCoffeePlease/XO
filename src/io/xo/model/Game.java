@@ -6,7 +6,7 @@ public class Game {
 
     private final Field field;
 
-    private String name;
+    private final String name;
 
     public Game(final Player[] players,
                 final Field field,
@@ -16,15 +16,15 @@ public class Game {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
+    public Player[] getPlayers() {
+        return players;
     }
 
     public Field getField() {
         return field;
     }
 
-    public Player[] getPlayers() {
-        return players;
+    public String getName() {
+        return name;
     }
 }
